@@ -1,0 +1,1 @@
+thank you, https://loading.io/ for the loading gifs
