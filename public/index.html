@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-container">
+        <form action="/generate" method="get">
+          <h1 class="group-title" style='text-align: center;'>Input</h1>
+					<div class="input-group">
+						<label for="niche">Niche</label>
+						<input type="text" name="search" id="niche" />
+					</div>
+
+					<div class="input-group">
+						<label for="topic">Topic</label>
+						<input type="text" name="topic" id="topic" />
+					</div>
+
+					<div class="input-group">
+						<label for="avatar">Avatar</label>
+						<textarea name="avatar" id="avatar" cols="30" rows="10"></textarea>
+					</div>
+
+          <div class="input-group">
+						<label for="listicles">Allow Listicles - Ex: 'The 3 things you need to ___ </label>
+						<input type="checkbox" name="listicles" id="listicles">
+					</div>
+
+          <div class="input-group">
+            <label for="goal">Goal</label>
+            <select name="goal" id="goal">
+              <option value="tutorial">Tutorial</option>
+              <option value="perform">High Performance</option>
+              <option value="review">Review</option>
+              <option value="comparison">Comparison</option>
+              <option value="list">List</option>
+              <option value="educate">Educational</option>
+            </select>
+          </div>
+					<button type="submit" id="submit-btn">Generate</button>
+				</form>
+				<!--Generate me a results div-->
+			</div>
+			<div class="results" id="results">
+        <h1 class="group-title" style='text-align: center;'>Results</h1>
+        <h2 style='margin: auto;'>Generate to get started!</h2>
+				<div class="title-card">
+					<h2>Ultimate Deadlift Guide for Young Men: Maximize Your Strength and Gain!</h2>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const results = document.getElementById('results');
+			const form = document.querySelector('form');
+			const submitBtn = document.getElementById('submit-btn');
+			form.addEventListener('submit', (e) => {
+				results.innerHTML = '<img class="loading" style="margin: auto;" src="./loading-branded.gif" alt="loading" />';
+				e.preventDefault();
+				submitBtn.disabled = true;
+				const formData = new FormData(form);
+				const search = formData.get('search');
+				const topic = formData.get('topic');
+				const avatar = formData.get('avatar');
+        const goal = formData.get('goal');
+        //ensure all fields are filled
+        if (!search || !topic || !avatar) {
+          results.innerHTML = `<h1 class="group-title" style='text-align: center;'>Results</h1>
+          <h2 class="error" style="margin: auto;">Please fill all fields</h2>`;
+          submitBtn.disabled = false;
+          return;
+        }
+				fetch(`/generate?niche=${search}&topic=${topic}&avatar=${avatar}&goal=${goal}`)
+					.then((res) => res.json())
+					.then((data) => {
+						results.innerHTML = `<h1 class="group-title" style='text-align: center;'>Results</h1>`;
+            
+						console.log(data);
+						data.forEach((t) => {
+							const titleCard = document.createElement('div');
+							titleCard.classList.add('title-card');
+							titleCard.addEventListener('click', (e) => {
+								navigator.clipboard.writeText(e.target.innerText);
+								alert('Copied to clipboard!');
+							})
+							const title = document.createElement('h2');
+							title.innerText = t;
+							titleCard.appendChild(title);
+							results.appendChild(titleCard);
+						});
+						submitBtn.disabled = false;
+					});
+			});
+		</script>
+	</body>
+</html>

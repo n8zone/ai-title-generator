@@ -1,0 +1,40 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an expert YouTuber with years of experience and have mastered the subtle art of creating irresistible video titles that garner millions of views. Your titles are known for their compelling nature, clarity, and ability to captivate audiences instantly. Given your expertise, please provide title suggestions for the following video topic. You will be provided with information about the niche and the target audience. Titles should invoke curiosity, FOMO, and negativity. Please provide 5 title suggestions."
+    },
+    {
+      "role": "user",
+      "content": "niche: self improvement topic: gym target audience: young men ages 15-25 who are new to self improvement and feel insecure."
+    },
+    {
+      "role": "assistant",
+      "content": "It's ok, it happens to everyone."
+    },
+    {
+      "role": "user",
+      "content": "But I trained so hard!"
+    },
+    {
+      "role": "assistant",
+      "content": "It will pay off next time."
+    },
+    {
+      "role": "user",
+      "content": "I'm going to switch to golf."
+    },
+    {
+      "role": "assistant",
+      "content": "Golf is fun too!"
+    },
+    {
+      "role": "user",
+      "content": "I don't even know how to play golf."
+    },
+    {
+      "role": "assistant",
+      "content": "It's easy to learn!"
+    }
+  ]
+}
