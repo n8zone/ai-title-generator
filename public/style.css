@@ -37,7 +37,7 @@ h2 {
   justify-content: center;
 
   width: 95%;
-  height: 85%;
+  height: 90%;
   background-color: #f5f5f5;
 
   border-radius: 8px;
@@ -200,4 +200,24 @@ select {
 
 .loading {
   width: 200px;
+}
+
+.copy-popup {
+  display: none; /* Hidden initially */
+  position: fixed; /* Make it appear on top of other content */
+  bottom: 20px; /* Position from the bottom */
+  left: 50%; /* Center the popup */
+  transform: translateX(-50%); /* Centering trick */
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000; /* Ensure it's on top */
+  font-family: Arial, Helvetica, sans-serif;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.copy-popup.hide {
+  opacity: 0;
 }
